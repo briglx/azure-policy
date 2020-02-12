@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2019-11-01",
+            "name": "mypolicyarmtestvnet",
+            "location": "westus2",
+            "properties": {  
+                "addressSpace": {
+                    "addressPrefixes":["10.3.0.0/16"]
+                },              
+                "subnets": [],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": true,
+                "ddosProtectionPlan": {
+                    "id": "/subscriptions/cd3b4810-bb97-4f99-9eaa-20c547ee30cb/resourceGroups/PolicyArmTest/providers/Microsoft.Network/ddosProtectionPlans/myddosprotectionplan"
+                }
+            }
+        }
+    ]
+}

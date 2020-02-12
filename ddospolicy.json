@@ -30,7 +30,7 @@
                        "properties": {
                           "mode": "incremental",
                           "template": {}
-                       }
+                       }    
                     }
                 }
             }
