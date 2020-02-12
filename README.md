@@ -9,9 +9,14 @@ Monthly price for DDoS Protection (includes protection for 100 resources): $2,94
 
 Overage charges (more than 100 resources): $30 per resource per month *
 
+A policy that modifies resources has to have an identity and role based access in order to make the necessary changes.
+
+You may only want to enable ddos standard protection if there are resources that have public IPs and not all vnets
+
 # Notes
 
 - a vnet needs a a ddos protection plan before it can be enabled
+- Required Role: Network Contributor
 
 # Deploy
 
@@ -27,3 +32,4 @@ New-AzResourceGroupDeployment -ResourceGroupName PolicyArmTest -TemplateFile .\s
 - Deploymnents details https://docs.microsoft.com/en-us/rest/api/resources/deployments
 - vnet arm details https://docs.microsoft.com/en-us/rest/api/virtualnetwork/virtualnetworks/createorupdate
 - vnet ddos protection plan details https://docs.microsoft.com/en-us/rest/api/virtualnetwork/ddosprotectionplans
+- Network Contributor role https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#network-contributor

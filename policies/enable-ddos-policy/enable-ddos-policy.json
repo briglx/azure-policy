@@ -1,0 +1,69 @@
+{
+    "properties": {
+        "displayName": "Enable ddos protection Virtual Networks",
+        "description": "This policy enforces DDOS protection on virtual networks",
+        "mode": "All",
+        "parameters": {},
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/virtualNetworks"
+                    },
+                    {                        
+                        "field": "name",
+                        "equals": "mypolicyarmtestvnet"                        
+                    },
+                    {                        
+                        "field": "Microsoft.Network/virtualNetworks/enableDdosProtection",
+                        "equals": "false"                        
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deployIfNotExists",
+                "details": {
+                    "type": "Microsoft.Network/virtualNetworks",
+                    "name": "EMPTYRESOURCETHATDOESNTEXIST",
+                    "existenceCondition": {
+                        "field": "Microsoft.Network/virtualNetworks/ddosProtectionPlan",
+                        "exists": "false"
+                    },
+                    "roleDefinitionIds": [
+                       "/providers/microsoft.authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+                    ],
+                    "deployment": {
+                        "properties": {
+                            "mode": "incremental",
+                            "template": {
+
+                                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                                "contentVersion": "1.0.0.0",
+                                "parameters": {},
+                                "variables": {},
+                                "resources": [{
+                                    "type": "Microsoft.Network/virtualNetworks",
+                                    "apiVersion": "2019-11-01",
+                                    "name": "mypolicyarmtestvnet",
+                                    "location": "westus2",
+                                    "properties": {  
+                                            "addressSpace": {
+                                            "addressPrefixes":["10.3.0.0/16"]
+                                        },              
+                                        "subnets": [],
+                                        "virtualNetworkPeerings": [],
+                                        "enableDdosProtection": true,
+                                        "ddosProtectionPlan": {
+                                            "id": "/subscriptions/cd3b4810-bb97-4f99-9eaa-20c547ee30cb/resourceGroups/PolicyArmTest/providers/Microsoft.Network/ddosProtectionPlans/myddosprotectionplan"
+                                        }
+                                    }
+                                }]
+                            }
+                       }    
+                    }
+                }
+            }
+        }
+    }
+}
