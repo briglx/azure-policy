@@ -28,6 +28,7 @@ New-AzResourceGroupDeployment -ResourceGroupName PolicyArmTest -TemplateFile .\s
 
 # References
 
+- Azure Policy Examples on Github https://github.com/Azure/azure-policy
 - deployifnotexist details https://docs.microsoft.com/en-us/azure/governance/policy/concepts/effects#deployifnotexists
 - Deploymnents details https://docs.microsoft.com/en-us/rest/api/resources/deployments
 - vnet arm details https://docs.microsoft.com/en-us/rest/api/virtualnetwork/virtualnetworks/createorupdate
